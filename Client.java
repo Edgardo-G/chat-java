@@ -17,8 +17,10 @@ public class Client {
 
         System.out.print("Ingresá tu nombre: ");
         String name = keyboard.readLine();
+        // Manda el nombre al server
+        output.println(name);
         System.out.println("Conectado al servidor como " + name + "!");
-
+        
         // Este hilo escucha los mensajes mientras el hilo principal se encarga de enviar los mensajes que el usuario escribe por teclado
         Thread receiveThread = new Thread(() -> {
             try {
@@ -42,7 +44,11 @@ public class Client {
         String message;
         while ((message = keyboard.readLine()) != null) {
             if (message.isEmpty()) continue;
-            output.println(name + ": " + message);
+            if (message.startsWith("/")) {
+                output.println(message);
+            } else {
+                output.println(name + ": " + message);
+            }
         }
 
         socket.close();
