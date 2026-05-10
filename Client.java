@@ -15,11 +15,28 @@ public class Client {
             new InputStreamReader(System.in)
         );
 
-        System.out.print("Ingresá tu nombre: ");
-        String name = keyboard.readLine();
-        // Manda el nombre al server
-        output.println(name);
-        System.out.println("Conectado al servidor como " + name + "!");
+        String name = null;
+        String serverMessage;
+        while ((serverMessage = input.readLine()) != null) {
+            System.out.println(serverMessage);
+            if (serverMessage.equals("Usuario:")) {
+                String username = keyboard.readLine();
+                output.println(username);
+                name = username;
+            } else if (serverMessage.equals("Contraseña:")) {
+                String password = keyboard.readLine();
+                output.println(password);
+            } else {
+                break;
+            }
+        }
+
+        if (name == null) {
+            socket.close();
+            return;
+        }
+
+        final String finalName = name;
         
         // Este hilo escucha los mensajes mientras el hilo principal se encarga de enviar los mensajes que el usuario escribe por teclado
         Thread receiveThread = new Thread(() -> {
@@ -47,7 +64,7 @@ public class Client {
             if (message.startsWith("/")) {
                 output.println(message);
             } else {
-                output.println(name + ": " + message);
+                output.println(finalName + ": " + message);
             }
         }
 

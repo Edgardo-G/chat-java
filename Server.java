@@ -36,7 +36,18 @@ public class Server {
                         new InputStreamReader(clientSocket.getInputStream())
                     );
 
-                    name = input.readLine();
+                    output.println("Usuario:");
+                    String username = input.readLine();
+                    output.println("Contraseña:");
+                    String password = input.readLine();
+
+                    if (!UserManager.authenticate(username, password)) {
+                        output.println("*** Credenciales incorrectas. Cerrando conexión. ***");
+                        clientSocket.close();
+                        return;
+                    }
+                    
+                    name = username;
                     names.put(output, name);
                     System.out.println(name + " se conectó.");
                     for (PrintWriter client : clients) {
