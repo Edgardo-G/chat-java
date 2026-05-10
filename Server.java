@@ -53,6 +53,28 @@ public class Server {
                             output.println("*** Usuarios conectados: " + String.join(", ", names.values()) + " ***");
                             continue;
                         }
+                        if (message.startsWith("/msg ")) {
+                            String[] parts = message.split(" ", 3);
+                            if (parts.length < 3) {
+                                output.println("*** Uso: /msg <usuario> <mensaje> ***");
+                                continue;
+                            }
+                            String targetName = parts[1];
+                            String privateMessage = parts[2];
+                            boolean found = false;
+                            for (Map.Entry<PrintWriter, String> entry : names.entrySet()) {
+                                if (entry.getValue().equals(targetName)) {
+                                    entry.getKey().println("[privado de " + name + "]: " + privateMessage);
+                                    output.println("[privado a " + targetName + "]: " + privateMessage);
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found) {
+                                output.println("*** Usuario " + targetName + " no encontrado ***");
+                            }
+                            continue;
+                        }
                         System.out.println("Mensaje recibido: " + message);
                         // Si client y output son lo mismo significa que es el mismo mensaje que el cliente acaba de enviar, por lo que no se lo reenvia a ese cliente sino a los demas clientes conectados
                         // A diferencia de python la variable auxiiar aca (client) se debe declarar
