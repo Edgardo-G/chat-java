@@ -62,7 +62,13 @@ public class Client {
         while ((message = keyboard.readLine()) != null) {
             if (message.isEmpty()) continue;
             if (message.startsWith("/")) {
-                output.println(message);
+                if (message.equals("/clear")) {
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                }else
+                {
+                    output.println(message);
+                }
             } else {
                 output.println(finalName + ": " + message);
             }

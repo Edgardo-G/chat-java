@@ -100,6 +100,15 @@ public class Server {
                             }
                             continue;
                         }
+                        if (message.equals("/help")) {
+                            output.println("*** Comandos disponibles ***");
+                            output.println("/list    - Ver usuarios conectados");
+                            output.println("/msg <usuario> <mensaje> - Enviar mensaje privado");
+                            output.println("/history - Ver historial de mensajes");
+                            output.println("/clear   - Limpiar la pantalla");
+                            output.println("/help    - Mostrar esta ayuda");
+                            continue;
+                        }
                         MessageLogger.log(name, "todos", message);
                         // Si client y output son lo mismo significa que es el mismo mensaje que el cliente acaba de enviar, por lo que no se lo reenvia a ese cliente sino a los demas clientes conectados
                         // A diferencia de python la variable auxiiar aca (client) se debe declarar
