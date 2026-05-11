@@ -77,6 +77,7 @@ public class Server {
                                 if (entry.getValue().equals(targetName)) {
                                     entry.getKey().println("[privado de " + name + "]: " + privateMessage);
                                     output.println("[privado a " + targetName + "]: " + privateMessage);
+                                    MessageLogger.log(name, targetName, privateMessage);
                                     found = true;
                                     break;
                                 }
@@ -86,9 +87,10 @@ public class Server {
                             }
                             continue;
                         }
-                        System.out.println("Mensaje recibido: " + message);
+                        MessageLogger.log(name, "todos", message);
                         // Si client y output son lo mismo significa que es el mismo mensaje que el cliente acaba de enviar, por lo que no se lo reenvia a ese cliente sino a los demas clientes conectados
                         // A diferencia de python la variable auxiiar aca (client) se debe declarar
+                        System.out.println(message);
                         for (PrintWriter client : clients) {
                             if (client != output) {
                                 client.println(message);
