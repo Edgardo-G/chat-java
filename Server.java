@@ -87,6 +87,19 @@ public class Server {
                             }
                             continue;
                         }
+                        if (message.equals("/history")) {
+                            List<String> history = MessageLogger.getHistory(20, name);
+                            if (history.isEmpty()) {
+                                output.println("*** No hay mensajes en el historial ***");
+                            } else {
+                                output.println("*** Últimos mensajes ***");
+                                for (String line : history) {
+                                    output.println(line);
+                                }
+                                output.println("*** Fin del historial ***");
+                            }
+                            continue;
+                        }
                         MessageLogger.log(name, "todos", message);
                         // Si client y output son lo mismo significa que es el mismo mensaje que el cliente acaba de enviar, por lo que no se lo reenvia a ese cliente sino a los demas clientes conectados
                         // A diferencia de python la variable auxiiar aca (client) se debe declarar

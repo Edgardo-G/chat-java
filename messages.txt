@@ -3,3 +3,13 @@
 10/05/2026 22:28:34 | juan -> todos | juan: hola
 10/05/2026 22:28:34 | juan -> todos | juan: a
 10/05/2026 22:28:45 | juan -> todos | juan: como estan
+10/05/2026 22:37:27 | juan -> todos | juan: hola soy juan
+10/05/2026 22:37:27 | pedro -> todos | pedro: hola soy pedro
+10/05/2026 22:37:52 | juan -> todos | juan: chau
+10/05/2026 22:37:54 | pedro -> todos | pedro: chau
+10/05/2026 22:38:22 | pedro -> todos | pedro: clear
+10/05/2026 22:38:59 | juan -> todos | juan: 
+10/05/2026 22:40:47 | juan -> todos | /msj pedro hola
+10/05/2026 22:41:24 | pedro -> juan | hola
+10/05/2026 22:47:46 | pedro -> todos | pedro: hola
+10/05/2026 22:47:46 | juan -> todos | juan: hola
